@@ -13,4 +13,17 @@
 - `$ docker-compose up -d`
 - `$ docker-compose up -d --build # update container`
 
-https://testdriven.io/courses/tdd-flask/postgres-setup/
+## Testing
+
+- `$ docker-compose exec api python -m pytest "src/tests"`
+- `$ docker-compose exec api python -m pytest "src/tests" -k config`
+  - only run tests with config in their names
+- https://testdriven.io/blog/pytest-for-beginners/
+- pytest will autodiscover test files that start or end with test -- i.e., test\*_.py or _\_test.py. Test functions must begin with test\*, and if you want to use classes they must also begin with Test.
+- Fixtures are reusable objects for tests. They have a scope associated with them, which indicates how often the fixture is invoked:
+  - function - once per test function (default)
+  - class - once per test class
+  - module - once per test module
+  - session - once per test session
+  - https://testdriven.io/blog/flask-pytest/
+- pytest tests are just functions that either start or end with test
