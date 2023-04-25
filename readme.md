@@ -33,3 +33,8 @@
 - `$ docker-compose exec api python manage.py recreate_db`
   - Adds model to dev db
 - `$ docker-compose exec api-db psql -U postgres`
+
+## Latest
+
+- `$ docker-compose up -d`
+- `$ docker-compose exec api python -m pytest "src/tests"`
