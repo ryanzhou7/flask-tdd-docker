@@ -12,6 +12,8 @@
 - `$ docker-compose build`
 - `$ docker-compose up -d`
 - `$ docker-compose up -d --build # update container`
+- After adding create_app
+- `$ docker-compose up -d && docker-compose exec api flask shell`
 
 ## Testing
 
@@ -27,3 +29,7 @@
   - session - once per test session
   - https://testdriven.io/blog/flask-pytest/
 - pytest tests are just functions that either start or end with test
+
+- `$ docker-compose exec api python manage.py recreate_db`
+  - Adds model to dev db
+- `$ docker-compose exec api-db psql -U postgres`
