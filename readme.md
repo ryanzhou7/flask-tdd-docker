@@ -38,3 +38,7 @@
 
 - `$ docker-compose up -d`
 - `$ docker-compose exec api python -m pytest "src/tests"`
+- `$ docker-compose exec api python -m pytest "src/tests" --lf`
+  - Only re-running tests that failed during last run
+
+https://testdriven.io/courses/tdd-flask/restful-routes/
