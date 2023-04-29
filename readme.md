@@ -30,8 +30,8 @@
   - https://testdriven.io/blog/flask-pytest/
 - pytest tests are just functions that either start or end with test
 
-- `$ docker-compose exec api python manage.py recreate_db`
   - Adds model to dev db
+
 - `$ docker-compose exec api-db psql -U postgres`
 
 ## Latest
@@ -39,7 +39,11 @@
 - Delete container
 - `$ docker-compose up -d`
 - `$ docker-compose exec api python -m pytest "src/tests"`
+- `$ docker-compose exec api python manage.py recreate_db`
+  - create dev db
+  - `http://localhost:5004/users` shows no users
 - `$ docker-compose exec api python manage.py seed_db`
+  - Adds users
 
 ## Pytest commands
 
