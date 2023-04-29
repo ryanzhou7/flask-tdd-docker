@@ -36,5 +36,12 @@ class UsersList(Resource):
         response_object['message'] = f'{email} was added!'
         return response_object, 201
 
+class Users(Resource):
 
+    @api.marshal_with(user)
+    def get(self, user_id):
+        return User.query.filter_by(id=user_id).first(), 200
+
+
+api.add_resource(Users, '/users/<int:user_id>')
 api.add_resource(UsersList, '/users')
