@@ -45,6 +45,23 @@
 - `$ docker-compose exec api python manage.py seed_db`
   - Adds users
 
+## Deployment to heroku
+
+### setup
+
+- `$ heroku create # create app`
+- `$ heroku container:login # login`
+- `$ heroku addons:create heroku-postgresql:mini --app ancient-meadow-86425 # provision db`
+
+### deploy
+
+- `$ docker build -f Dockerfile.prod -t registry.heroku.com/ancient-meadow-86425/web .`
+  - format is `registry.heroku.com/<app>/<process-type>`
+- `$ docker push registry.heroku.com/ancient-meadow-86425/web:latest`
+- `$ heroku container:release web --app ancient-meadow-86425`
+  - release image
+- still need to `$ heroku run python manage.py recreate_db --app ancient-meadow-86425`
+
 ## Pytest commands
 
 ```bash
@@ -75,3 +92,5 @@ $ docker-compose exec api python -m pytest "src/tests" -l
 # list the 2 slowest tests
 $ docker-compose exec api python -m pytest "src/tests" --durations=2
 ```
+
+- [source](https://gitlab.com/testdriven/flask-tdd-docker)
