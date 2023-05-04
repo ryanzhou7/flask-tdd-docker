@@ -62,35 +62,31 @@
   - release image
 - still need to `$ heroku run python manage.py recreate_db --app ancient-meadow-86425`
 
-## Pytest commands
+## Code coverage and quality
 
-```bash
-# normal run
-$ docker-compose exec api python -m pytest "src/tests"
+### Coverage
 
-# disable warnings
-$ docker-compose exec api python -m pytest "src/tests" -p no:warnings
+- pytest-cov==4.0.0
+- Add `.coveragerc` file
+- `$ docker-compose exec api python -m pytest "src/tests" -p no:warnings --cov="src"`
+- `$ docker-compose exec api python -m pytest "src/tests" -p no:warnings --cov="src" --cov-report html`
+  - view html version
 
-# run only the last failed tests
-$ docker-compose exec api python -m pytest "src/tests" --lf
+### Linting
 
-# run only the tests with names that match the string expression
-$ docker-compose exec api python -m pytest "src/tests" -k "config and not test_development_config"
+- flake8==6.0.0
+- pyflakes + pycodestyle
+- `setup.cfg` file
+- `$ docker-compose exec api flake8 src`
 
-# stop the test session after the first failure
-$ docker-compose exec api python -m pytest "src/tests" -x
+- black==23.1.0
+- formatting
+- `$ docker-compose exec api black src --check`
+- `$ docker-compose exec api black src  --diff`
+- `$ docker-compose exec api black src # apply`
 
-# enter PDB after first failure then end the test session
-$ docker-compose exec api python -m pytest "src/tests" -x --pdb
-
-# stop the test run after two failures
-$ docker-compose exec api python -m pytest "src/tests" --maxfail=2
-
-# show local variables in tracebacks
-$ docker-compose exec api python -m pytest "src/tests" -l
-
-# list the 2 slowest tests
-$ docker-compose exec api python -m pytest "src/tests" --durations=2
-```
-
-- [source](https://gitlab.com/testdriven/flask-tdd-docker)
+- isort==5.12.0
+- sort and section imports
+- `$ docker-compose exec api isort src --check-only`
+- `$ docker-compose exec api isort src --diff`
+- `$ docker-compose exec api isort src # apply`
