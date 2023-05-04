@@ -2,8 +2,9 @@
 
 
 import pytest
-from src.api.models import User
+
 from src import create_app, db  # updated
+from src.api.models import User
 
 
 @pytest.fixture(scope="module")
